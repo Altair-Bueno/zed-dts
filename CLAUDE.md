@@ -96,13 +96,19 @@ its `language_server_command` was not used, but the project structure, `Cargo.to
 The grammar C parser is fetched by Zed at the commit pinned in `extension.toml`. The query
 files (`highlights.scm`) are vendored in `languages/dts/` and must be kept in sync manually.
 
+**Important:** `languages/dts/highlights.scm` is **not** a verbatim copy of the upstream
+`queries/highlights.scm`. It has been extended with additional captures for strings, numbers,
+node names, and `#include` paths (adapted from
+[zed_devicetree](https://github.com/anikinmd/zed_devicetree)). Do not blindly overwrite it
+from the submodule — instead, diff the upstream changes and merge them in.
+
 1. Update the submodule:
    ```bash
    git submodule update --remote tree-sitter-devicetree
    ```
-2. Copy the updated queries:
+2. Diff the upstream highlights against ours and merge any new node types or captures:
    ```bash
-   cp tree-sitter-devicetree/queries/highlights.scm languages/dts/highlights.scm
+   diff tree-sitter-devicetree/queries/highlights.scm languages/dts/highlights.scm
    ```
 3. Copy the license if it changed:
    ```bash
