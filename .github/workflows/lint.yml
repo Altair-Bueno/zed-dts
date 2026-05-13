@@ -1,0 +1,25 @@
+name: Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  format:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Check Markdown formatting (prettier)
+        uses: actionsx/prettier@v3
+        with:
+          args: --check "**/*.md"
+
+      - name: Check TOML formatting (taplo)
+        uses: uncenter/setup-taplo@v1
+        with:
+          version: "0.9.3"
+      - run: taplo fmt --check $(git ls-files '*.toml' | grep -v '^tree-sitter-devicetree/')

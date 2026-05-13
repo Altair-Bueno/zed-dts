@@ -1,0 +1,21 @@
+/dts-v1/;
+#include "zedboard.dtsi"
+
+/**
+ * Sample Device Tree for ZedBoard v1.0
+ */
+
+/ {
+	model = "ZedBoard";
+	compatible = "xlnx,zedboard-2015.4", "xlnx,zedboard";
+};
+
+&awesome {
+	status = "okay";
+	/delete-property/ foo;
+
+	zed_editor: zed-editor@6767676 {
+		compatible = "xlnx,zed-editor";
+		reg = <0x6767676 0x42>;
+	};
+};

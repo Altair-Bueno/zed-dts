@@ -1,0 +1,21 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  "lsp": {
+    "dts-language-server": {
+      "settings": {
+        "devicetree": {
+          "contexts": [
+            {
+              "ctxName": "zedboard",
+              "dtsFile": "examples/zedboard-v1.dts",
+              "includePaths": ["examples/"]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
